@@ -1,7 +1,12 @@
+import ValidationPage from "./_components/ValidationMain";
+import ValidationMain from "./_components/ValidationMain";
+
 const Main = () => {
   return (
     <div>
-      <ValidationMain />
+      <ValidationPage />
     </div>
   );
 };
+
+export default Main;
