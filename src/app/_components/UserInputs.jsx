@@ -13,7 +13,7 @@ const UserInputs = ({
         {label} <span className="text-[#e14942] text-[16px]">*</span>
       </p>
       <input
-        onBlur={onBlur}
+        onBlur={onBlur(getInput, name)}
         onChange={getInput}
         type={type}
         placeholder={placeholder}

@@ -64,7 +64,7 @@ const Container = () => {
           type={"text"}
           placeholder={"Your first name"}
           getInput={getFirstName}
-          onBlur={validatingName(getFirstName, firstName)}
+          onBlur={validatingName}
           error={errorText}
         />
         <UserInputs
