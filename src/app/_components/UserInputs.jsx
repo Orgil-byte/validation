@@ -1,4 +1,10 @@
 const UserInputs = ({ label, type, placeholder, name, onChange, error }) => {
+  const baseClasses =
+    "w-full p-3 text-base leading-5 rounded-md focus:outline-[#0ca5e9] text-[#121316]";
+  const errorClasses = error
+    ? "outline-2 outline-red-500"
+    : "outline-1 outline-[#cbd5e1]";
+
   return (
     <fieldset className="space-y-2">
       <p className=" block text-sm font-semibold leading-4 text-[#334155]">
@@ -8,10 +14,10 @@ const UserInputs = ({ label, type, placeholder, name, onChange, error }) => {
         onChange={onChange}
         type={type}
         placeholder={placeholder}
-        className={`w-full p-3 text-base leading-5 rounded-md  focus:outline-[#0ca5e9] ${error ? "outline-2 outline-red-500" : "outline-1 outline-[#cbd5e1]"} text-[#121316]`}
+        className={`${baseClasses} ${errorClasses}`}
         name={name}
       />
-      <p className="text-error text-xs text-red-500">{error}</p>
+      {error && <p className="text-error text-xs text-red-500">{error}</p>}
     </fieldset>
   );
 };

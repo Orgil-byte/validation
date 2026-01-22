@@ -31,8 +31,6 @@ const Container = () => {
       newError.userName = "Хэрэглэгчийн нэрээ оруулна уу.";
     }
     setErrorChanges(newError);
-
-    return Object.keys(newError).length === 0;
   };
 
   return (
@@ -45,7 +43,7 @@ const Container = () => {
           type={"text"}
           placeholder={"Your first name"}
           onChange={onChange}
-          error={errorChanges}
+          error={errorChanges?.firstName}
         />
         <UserInputs
           label={"Last name"}
@@ -53,7 +51,7 @@ const Container = () => {
           type={"text"}
           placeholder={"Your last name"}
           onChange={onChange}
-          error={errorChanges}
+          error={errorChanges?.lastName}
         />
         <UserInputs
           label={"Username"}
@@ -61,7 +59,7 @@ const Container = () => {
           type={"text"}
           placeholder={"Your username"}
           onChange={onChange}
-          error={errorChanges}
+          error={errorChanges?.userName}
         />
       </div>
       <ContinueButton
