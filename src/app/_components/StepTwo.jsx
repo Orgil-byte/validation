@@ -5,7 +5,7 @@ import UserInputs from "./UserInputs";
 import ContinueButton from "./Button";
 import { useState } from "react";
 
-const StepTwo = () => {
+const StepTwo = ({ id }) => {
   const [formData, setFormData] = useState({
     email: "",
     phoneNumber: "",
@@ -77,7 +77,7 @@ const StepTwo = () => {
       </div>
       <ContinueButton
         text="Continue"
-        pageNum={"1/3"}
+        pageNum={`${id}/3`}
         onClick={formValidation}
       />
     </div>
