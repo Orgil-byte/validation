@@ -3,9 +3,9 @@ const UserInputs = ({
   type,
   placeholder,
   name,
-  getInput,
-  onBlur,
-  errorText,
+  onChange,
+  error,
+  errorClass,
 }) => {
   return (
     <fieldset className="space-y-2">
@@ -13,14 +13,13 @@ const UserInputs = ({
         {label} <span className="text-[#e14942] text-[16px]">*</span>
       </p>
       <input
-        onBlur={onBlur(getInput, name)}
-        onChange={getInput}
+        onChange={onChange}
         type={type}
         placeholder={placeholder}
-        className={`w-full p-3 text-base leading-5 rounded-md outline  focus:outline-[#0ca5e9] text-[#121316]`}
+        className={`w-full p-3 text-base leading-5 rounded-md outline  focus:outline-[#0ca5e9] ${errorClass} text-[#121316]`}
         name={name}
       />
-      <p className="text-error text-xs text-red-500">{errorText}</p>
+      <p className="text-error text-xs text-red-500">{error}</p>
     </fieldset>
   );
 };

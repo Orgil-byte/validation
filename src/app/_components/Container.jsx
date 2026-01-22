@@ -6,54 +6,59 @@ import ContinueButton from "./Button";
 import { useState } from "react";
 
 const Container = () => {
-  //UseState-uud
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [userName, setUserName] = useState("");
-  const [renderInput, setRenderInput] = useState([]);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    userName: "",
+  });
 
-  const [errorText, setErrorText] = useState("");
-  //
-  const getFirstName = (e) => {
-    return setFirstName(e.target.value);
+  const [error, setError] = useState();
+  const [firstErrorClass, setFirstErrorClass] = useState({
+    class: "outline-red-500",
+    text: "",
+  });
+  const [lastErrorClass, setLastErrorClass] = useState({
+    class: "outline-red-500",
+    text: "",
+  });
+  const [userErrorClass, setUserErrorClass] = useState({
+    class: "outline-red-500",
+    text: "",
+  });
+
+  const onChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  const getLastName = (e) => {
-    return setLastName(e.target.value);
-  };
-  const getUserName = (e) => {
-    return setUserName(e.target.value);
-  };
-  //
-  const validatingName = (value, name) => {
-    const stringValue = toString(value);
-    if (stringValue.trim() === "") {
-      if (name === firstName) {
-        return setErrorText("Нэрээ оруулна уу");
-      }
-      if (name === lastName) {
-        return setErrorText("Овгоо оруулна уу.");
-      }
-      if (name === userName) {
-        return setErrorText("Хэрэглэгчийн нэрээ оруулна уу");
-      }
+
+  console.log("formData", formData);
+  console.log("=============================");
+
+  const formValidation = () => {
+    const isValid = {};
+
+    if (!formData.firstName) {
+      isValid.firstName = true;
+      setFirstErrorClass({
+        cla,
+      });
     } else {
-      if (stringValue.split().includes(Number)) {
-        return setError(
-          `${firstName.split(" ")} cannot contain special characters or numbers`,
-        );
-      }
+      isValid.firstName = false;
     }
+    if (!formData.lastName) {
+      isValid.lastName = true;
+    } else {
+      isValid.lastName = false;
+    }
+    if (!formData.userName) {
+      isValid.userName = true;
+    } else {
+      isValid.userName = false;
+    }
+    setError(isValid);
   };
-  //
-  const save = () => {
-    const task = {
-      firstName: firstName,
-      lastName: lastName,
-      userName: userName,
-    };
-    setRenderInput([...renderInput, task]);
-  };
-  console.log(renderInput);
+
+  console.log("error", error);
+
   return (
     <div className="flex flex-col w-120 h-163.75 bg-white rounded-lg p-8">
       <DefaultLogo />
@@ -63,30 +68,34 @@ const Container = () => {
           name={"firstName"}
           type={"text"}
           placeholder={"Your first name"}
-          getInput={getFirstName}
-          onBlur={validatingName}
-          error={errorText}
+          onChange={onChange}
+          // error={error.errorText}
+          // errorClass={error.class}
         />
         <UserInputs
           label={"Last name"}
           name={"lastName"}
           type={"text"}
           placeholder={"Your last name"}
-          getInput={getLastName}
-          onBlur={validatingName}
-          error={errorText}
+          onChange={onChange}
+          // error={error.errorText}
+          // errorClass={error.class}
         />
         <UserInputs
           label={"Username"}
           name={"userName"}
           type={"text"}
           placeholder={"Your username"}
-          getInput={getUserName}
-          onBlur={validatingName}
-          error={errorText}
+          onChange={onChange}
+          // error={error.errorText}
+          // errorClass={error.class}
         />
       </div>
-      <ContinueButton text="Continue" pageNum={"1/3"} onClick={save} />
+      <ContinueButton
+        text="Continue"
+        pageNum={"1/3"}
+        onClick={formValidation}
+      />
     </div>
   );
 };
