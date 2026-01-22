@@ -31,6 +31,7 @@ const Container = () => {
       newError.userName = "Хэрэглэгчийн нэрээ оруулна уу.";
     }
     setErrorChanges(newError);
+    console.log("This is the user infos", formData);
   };
 
   return (
