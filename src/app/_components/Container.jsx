@@ -12,50 +12,28 @@ const Container = () => {
     userName: "",
   });
 
-  const [error, setError] = useState();
-  const [firstErrorClass, setFirstErrorClass] = useState({
-    class: "outline-[#cbd]",
-    text: "",
-  });
-  const [lastErrorClass, setLastErrorClass] = useState({
-    class: "outline-red-500",
-    text: "",
-  });
-  const [userErrorClass, setUserErrorClass] = useState({
-    class: "outline-red-500",
-    text: "",
-  });
+  const [errorChanges, setErrorChanges] = useState();
 
   const onChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  console.log("formData", formData);
-  console.log("=============================");
-
   const formValidation = () => {
-    const isValid = {};
+    const newError = {};
 
     if (!formData.firstName) {
-      isValid.firstName = true;
-      setFirstErrorClass({});
-    } else {
-      isValid.firstName = false;
+      newError.firstName = "Нэрээ оруулна уу.";
     }
     if (!formData.lastName) {
-      isValid.lastName = true;
-    } else {
-      isValid.lastName = false;
+      newError.lastName = "Овгоо оруулна уу.";
     }
     if (!formData.userName) {
-      isValid.userName = true;
-    } else {
-      isValid.userName = false;
+      newError.userName = "Хэрэглэгчийн нэрээ оруулна уу.";
     }
-    setError(isValid);
-  };
+    setErrorChanges(newError);
 
-  console.log("error", error);
+    return Object.keys(newError).length === 0;
+  };
 
   return (
     <div className="flex flex-col w-120 h-163.75 bg-white rounded-lg p-8">
@@ -67,8 +45,7 @@ const Container = () => {
           type={"text"}
           placeholder={"Your first name"}
           onChange={onChange}
-          // error={error.errorText}
-          // errorClass={error.class}
+          error={errorChanges}
         />
         <UserInputs
           label={"Last name"}
@@ -76,8 +53,7 @@ const Container = () => {
           type={"text"}
           placeholder={"Your last name"}
           onChange={onChange}
-          // error={error.errorText}
-          // errorClass={error.class}
+          error={errorChanges}
         />
         <UserInputs
           label={"Username"}
@@ -85,8 +61,7 @@ const Container = () => {
           type={"text"}
           placeholder={"Your username"}
           onChange={onChange}
-          // error={error.errorText}
-          // errorClass={error.class}
+          error={errorChanges}
         />
       </div>
       <ContinueButton
