@@ -14,7 +14,7 @@ const Container = () => {
 
   const [error, setError] = useState();
   const [firstErrorClass, setFirstErrorClass] = useState({
-    class: "outline-red-500",
+    class: "outline-[#cbd]",
     text: "",
   });
   const [lastErrorClass, setLastErrorClass] = useState({
@@ -38,9 +38,7 @@ const Container = () => {
 
     if (!formData.firstName) {
       isValid.firstName = true;
-      setFirstErrorClass({
-        cla,
-      });
+      setFirstErrorClass({});
     } else {
       isValid.firstName = false;
     }
