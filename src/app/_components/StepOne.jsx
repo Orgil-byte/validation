@@ -5,7 +5,7 @@ import UserInputs from "./UserInputs";
 import ContinueButton from "./Button";
 import { useState } from "react";
 
-const Container = () => {
+const StepOne = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -72,4 +72,4 @@ const Container = () => {
   );
 };
 
-export default Container;
+export default StepOne;

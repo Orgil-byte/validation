@@ -1,0 +1,87 @@
+"use client";
+
+import DefaultLogo from "./DefaultLogo";
+import UserInputs from "./UserInputs";
+import ContinueButton from "./Button";
+import { useState } from "react";
+
+const StepTwo = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [errorChanges, setErrorChanges] = useState();
+
+  const onChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const formValidation = () => {
+    const newError = {};
+
+    if (!formData.email) {
+      newError.email = "Мэйл хаягаа оруулна уу";
+    }
+    if (!formData.phoneNumber) {
+      newError.phoneNumber = "Утасны дугаараа оруулна уу.";
+    }
+    if (!formData.password) {
+      newError.password = "Нууц үгээ оруулна уу";
+    }
+    if (!formData.confirmPassword) {
+      newError.confirmPassword = "Нууц үгээ давтаж оруулна уу";
+    }
+    setErrorChanges(newError);
+    console.log("This is the user infos", formData);
+  };
+
+  return (
+    <div className="flex flex-col w-120 min-h-163.75 bg-white rounded-lg p-8">
+      <DefaultLogo />
+      <div className="flex flex-col grow gap-3 mb-5">
+        <UserInputs
+          label={"Email"}
+          name={"email"}
+          type={"text"}
+          placeholder={"Your email"}
+          onChange={onChange}
+          error={errorChanges?.email}
+        />
+        <UserInputs
+          label={"Phone number"}
+          name={"phoneNumber"}
+          type={"text"}
+          placeholder={"Your phone number"}
+          onChange={onChange}
+          error={errorChanges?.phoneNumber}
+        />
+        <UserInputs
+          label={"Password"}
+          name={"password"}
+          type={"text"}
+          placeholder={"Your password"}
+          onChange={onChange}
+          error={errorChanges?.password}
+        />
+        <UserInputs
+          label={"ConfirmPassword"}
+          name={"confirmPassword"}
+          type={"text"}
+          placeholder={"Confirm password"}
+          onChange={onChange}
+          error={errorChanges?.confirmPassword}
+        />
+      </div>
+      <ContinueButton
+        text="Continue"
+        pageNum={"1/3"}
+        onClick={formValidation}
+      />
+    </div>
+  );
+};
+
+export default StepTwo;
