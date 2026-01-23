@@ -23,23 +23,21 @@ const StepOne = ({ id }) => {
   const formValidation = () => {
     const newError = {};
 
-    if (!formData.firstName) {
+    if (!formData.firstName.trim()) {
       newError.firstName = "Нэрээ оруулна уу.";
-    }
-    if (!lettersOnlyRegex.test(formData.firstName)) {
+    } else if (!lettersOnlyRegex.test(formData.firstName)) {
       newError.firstName =
         "First name cannot contain special characters or numbers.";
     }
 
-    if (!formData.lastName) {
+    if (!formData.lastName.trim()) {
       newError.lastName = "Овгоо оруулна уу.";
-    }
-    if (!lettersOnlyRegex.test(formData.lastName)) {
+    } else if (!lettersOnlyRegex.test(formData.lastName)) {
       newError.lastName =
         "Last name cannot contain special characters or numbers.";
     }
 
-    if (!formData.userName) {
+    if (!formData.userName.trim()) {
       newError.userName = "Хэрэглэгчийн нэрээ оруулна уу.";
     }
     setErrorChanges(newError);
@@ -58,7 +56,6 @@ const StepOne = ({ id }) => {
           onChange={onChange}
           error={errorChanges?.firstName}
         />
-        {/* <input placeholder="--/--/--" class="w-full p-3 text-base leading-5 rounded-md outline outline-error focus:outline-[#0CA5E9] text-[#121316]" type="date" value name="dateOfBirth"> */}
         <UserInputs
           label={"Last name"}
           name={"lastName"}

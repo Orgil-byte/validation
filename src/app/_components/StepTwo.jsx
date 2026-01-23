@@ -29,37 +29,31 @@ const StepTwo = ({ id }) => {
   const formValidation = () => {
     const newError = {};
 
-    if (formData.email === "") {
+    if (!formData.email.trim()) {
       newError.email = "Мэйл хаягаа оруулна уу";
-    }
-    if (!emailRegex.test(formData.email)) {
+    } else if (!emailRegex.test(formData.email)) {
       newError.email = "Please provide a valid email adress.";
     }
 
-    if (!formData.phoneNumber) {
+    if (!formData.phoneNumber.trim()) {
       newError.phoneNumber = "Утасны дугаараа оруулна уу.";
-    }
-    if (!phoneNumberRegex.test(formData.phoneNumber)) {
+    } else if (!phoneNumberRegex.test(formData.phoneNumber)) {
       newError.phoneNumber = "Please enter a valid phone number.";
     }
 
-    if (!formData.password) {
+    if (!formData.password.trim()) {
       newError.password = "Нууц үгээ оруулна уу.";
-    }
-    if (!passwordRegex.test(formData.password)) {
+    } else if (!passwordRegex.test(formData.password)) {
       newError.password = "Password should at least has 6 characters.";
-    }
-    if (!passwordNum.test(formData.password)) {
+    } else if (!passwordNum.test(formData.password)) {
       newError.password = "Password should include numbers.";
-    }
-    if (!passwordLetter.test(formData.password)) {
+    } else if (!passwordLetter.test(formData.password)) {
       newError.password = "Password should include letters.";
     }
 
-    if (!formData.confirmPassword) {
+    if (!formData.confirmPassword.trim()) {
       newError.confirmPassword = "Нууц үгээ давтаж оруулна уу.";
-    }
-    if (formData.password !== formData.confirmPassword) {
+    } else if (formData.password !== formData.confirmPassword) {
       newError.confirmPassword = "Таны оруулсан нууц үг таарахгүй байна.";
     }
     setErrorChanges(newError);
