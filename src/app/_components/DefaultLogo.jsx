@@ -1,6 +1,6 @@
-const DefaultLogo = (textLogo, textResponse) => {
+const DefaultLogo = ({ textLogo, textResponse }) => {
   return (
-    <div className="space-y-2 mb-7">
+    <div className="space-y-2 mb-7 bg-white">
       <div className="flex">
         <img
           className="w-15 h-15 object-cover"
