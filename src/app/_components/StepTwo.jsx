@@ -62,7 +62,10 @@ const StepTwo = ({ id }) => {
 
   return (
     <div className="flex flex-col w-120 min-h-163.75 bg-white rounded-lg p-8">
-      <DefaultLogo />
+      <DefaultLogo
+        textLogo={"Join Us! 😎"}
+        textResponse={"Please provide all current information accurately."}
+      />
       <div className="flex flex-col grow gap-3 mb-5">
         <UserInputs
           label={"Email"}
