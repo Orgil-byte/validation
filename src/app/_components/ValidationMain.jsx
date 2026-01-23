@@ -1,4 +1,5 @@
 import StepOne from "./StepOne";
+import StepThree from "./StepThree";
 import StepTwo from "./StepTwo";
 
 const ValidationPage = () => {
@@ -6,6 +7,7 @@ const ValidationPage = () => {
     <div className="bg-gray-100 w-full h-screen flex justify-center items-center">
       <StepOne id={1} />
       <StepTwo id={2} />
+      <StepThree id={3} />
     </div>
   );
 };

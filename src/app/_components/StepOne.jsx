@@ -2,7 +2,7 @@
 
 import DefaultLogo from "./DefaultLogo";
 import UserInputs from "./UserInputs";
-import ContinueButton from "./Button";
+import ContinueButton from "./ContinueButton";
 import { useState } from "react";
 
 const StepOne = ({ id }) => {
@@ -46,6 +46,7 @@ const StepOne = ({ id }) => {
           onChange={onChange}
           error={errorChanges?.firstName}
         />
+        {/* <input placeholder="--/--/--" class="w-full p-3 text-base leading-5 rounded-md outline outline-error focus:outline-[#0CA5E9] text-[#121316]" type="date" value name="dateOfBirth"> */}
         <UserInputs
           label={"Last name"}
           name={"lastName"}

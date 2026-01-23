@@ -2,7 +2,8 @@
 
 import DefaultLogo from "./DefaultLogo";
 import UserInputs from "./UserInputs";
-import ContinueButton from "./Button";
+import ContinueButton from "./ContinueButton";
+import BackButton from "./BackButton";
 import { useState } from "react";
 
 const StepTwo = ({ id }) => {
@@ -22,7 +23,7 @@ const StepTwo = ({ id }) => {
   const formValidation = () => {
     const newError = {};
 
-    if (!formData.email) {
+    if (formData.email === "") {
       newError.email = "Мэйл хаягаа оруулна уу";
     }
     if (!formData.phoneNumber) {
@@ -33,6 +34,9 @@ const StepTwo = ({ id }) => {
     }
     if (!formData.confirmPassword) {
       newError.confirmPassword = "Нууц үгээ давтаж оруулна уу";
+    }
+    if (formData.password !== formData.confirmPassword) {
+      newError.confirmPassword = "Таны оруулсан нууц үг таарахгүй байна.";
     }
     setErrorChanges(newError);
     console.log("This is the user infos", formData);
@@ -75,11 +79,15 @@ const StepTwo = ({ id }) => {
           error={errorChanges?.confirmPassword}
         />
       </div>
-      <ContinueButton
-        text="Continue"
-        pageNum={`${id}/3`}
-        onClick={formValidation}
-      />
+      <div className="flex w-full gap-2 mt-auto">
+        <BackButton text={"Back"} />
+        <ContinueButton
+          stepTwoThreeBtnFlex={"flex-1"}
+          text="Continue"
+          pageNum={`${id}/3`}
+          onClick={formValidation}
+        />
+      </div>
     </div>
   );
 };
