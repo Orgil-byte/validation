@@ -7,6 +7,12 @@ import BackButton from "./BackButton";
 import { useState } from "react";
 
 const StepTwo = ({ id }) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneNumberRegex = /^\+?\d{8}$/;
+  const passwordRegex = /[A-Za-z\d]{6,}/;
+  const passwordNum = /(?=.*\d)/;
+  const passwordLetter = /[a-zA-Z]/;
+
   const [formData, setFormData] = useState({
     email: "",
     phoneNumber: "",
@@ -26,14 +32,32 @@ const StepTwo = ({ id }) => {
     if (formData.email === "") {
       newError.email = "Мэйл хаягаа оруулна уу";
     }
+    if (!emailRegex.test(formData.email)) {
+      newError.email = "Please provide a valid email adress.";
+    }
+
     if (!formData.phoneNumber) {
       newError.phoneNumber = "Утасны дугаараа оруулна уу.";
     }
-    if (!formData.password) {
-      newError.password = "Нууц үгээ оруулна уу";
+    if (!phoneNumberRegex.test(formData.phoneNumber)) {
+      newError.phoneNumber = "Please enter a valid phone number.";
     }
+
+    if (!formData.password) {
+      newError.password = "Нууц үгээ оруулна уу.";
+    }
+    if (!passwordRegex.test(formData.password)) {
+      newError.password = "Password should at least has 6 characters.";
+    }
+    if (!passwordNum.test(formData.password)) {
+      newError.password = "Password should include numbers.";
+    }
+    if (!passwordLetter.test(formData.password)) {
+      newError.password = "Password should include letters.";
+    }
+
     if (!formData.confirmPassword) {
-      newError.confirmPassword = "Нууц үгээ давтаж оруулна уу";
+      newError.confirmPassword = "Нууц үгээ давтаж оруулна уу.";
     }
     if (formData.password !== formData.confirmPassword) {
       newError.confirmPassword = "Таны оруулсан нууц үг таарахгүй байна.";

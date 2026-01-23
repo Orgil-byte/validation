@@ -6,6 +6,8 @@ import ContinueButton from "./ContinueButton";
 import { useState } from "react";
 
 const StepOne = ({ id }) => {
+  const lettersOnlyRegex = /^[a-zA-Z]+$/;
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -24,9 +26,19 @@ const StepOne = ({ id }) => {
     if (!formData.firstName) {
       newError.firstName = "Нэрээ оруулна уу.";
     }
+    if (!lettersOnlyRegex.test(formData.firstName)) {
+      newError.firstName =
+        "First name cannot contain special characters or numbers.";
+    }
+
     if (!formData.lastName) {
       newError.lastName = "Овгоо оруулна уу.";
     }
+    if (!lettersOnlyRegex.test(formData.lastName)) {
+      newError.lastName =
+        "Last name cannot contain special characters or numbers.";
+    }
+
     if (!formData.userName) {
       newError.userName = "Хэрэглэгчийн нэрээ оруулна уу.";
     }
