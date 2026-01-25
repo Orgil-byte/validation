@@ -5,14 +5,8 @@ import UserInputs from "./UserInputs";
 import ContinueButton from "./ContinueButton";
 import { useState } from "react";
 
-const StepOne = ({ id }) => {
+const StepOne = ({ id, formData, setFormData }) => {
   const lettersOnlyRegex = /^[a-zA-Z]+$/;
-
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    userName: "",
-  });
 
   const [errorChanges, setErrorChanges] = useState();
 
@@ -41,7 +35,6 @@ const StepOne = ({ id }) => {
       newError.userName = "Хэрэглэгчийн нэрээ оруулна уу.";
     }
     setErrorChanges(newError);
-    console.log("This is the user infos", formData);
   };
 
   return (

@@ -6,19 +6,12 @@ import ContinueButton from "./ContinueButton";
 import BackButton from "./BackButton";
 import { useState } from "react";
 
-const StepTwo = ({ id }) => {
+const StepTwo = ({ id, formData, setFormData }) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneNumberRegex = /^\+?\d{8}$/;
   const passwordRegex = /[A-Za-z\d]{6,}/;
   const passwordNum = /(?=.*\d)/;
   const passwordLetter = /[a-zA-Z]/;
-
-  const [formData, setFormData] = useState({
-    email: "",
-    phoneNumber: "",
-    password: "",
-    confirmPassword: "",
-  });
 
   const [errorChanges, setErrorChanges] = useState();
 
@@ -57,7 +50,6 @@ const StepTwo = ({ id }) => {
       newError.confirmPassword = "Таны оруулсан нууц үг таарахгүй байна.";
     }
     setErrorChanges(newError);
-    console.log("This is the user infos", formData);
   };
 
   return (

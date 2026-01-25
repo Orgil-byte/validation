@@ -6,13 +6,8 @@ import BackButton from "./BackButton";
 import { useState } from "react";
 import Label from "./DragImg";
 
-const StepThree = ({ id }) => {
+const StepThree = ({ id, formData, setFormData }) => {
   const [errorChanges, setErrorChanges] = useState();
-
-  const [formData, setFormData] = useState({
-    birthday: "",
-    image: "",
-  });
 
   const onChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -26,7 +21,6 @@ const StepThree = ({ id }) => {
       newError.image = "Профайл зурагаа оруулна уу";
     }
     setErrorChanges(newError);
-    console.log("This is the user infos", formData);
   };
 
   return (
