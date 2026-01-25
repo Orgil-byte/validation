@@ -6,7 +6,7 @@ import ContinueButton from "./ContinueButton";
 import BackButton from "./BackButton";
 import { useState } from "react";
 
-const StepTwo = ({ id, formData, setFormData }) => {
+const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneNumberRegex = /^\+?\d{8}$/;
   const passwordRegex = /[A-Za-z\d]{6,}/;
@@ -50,6 +50,12 @@ const StepTwo = ({ id, formData, setFormData }) => {
       newError.confirmPassword = "Таны оруулсан нууц үг таарахгүй байна.";
     }
     setErrorChanges(newError);
+
+    const ifNoError = Object.keys(newError);
+
+    if (ifNoError.length === 0) {
+      setStep((prevStep) => prevStep + 1);
+    }
   };
 
   return (
@@ -93,7 +99,7 @@ const StepTwo = ({ id, formData, setFormData }) => {
         />
       </div>
       <div className="flex w-full gap-2 mt-auto">
-        <BackButton text={"Back"} />
+        <BackButton text={"Back"} onClick={handlePrev} />
         <ContinueButton
           stepTwoThreeBtnFlex={"flex-1"}
           text="Continue"

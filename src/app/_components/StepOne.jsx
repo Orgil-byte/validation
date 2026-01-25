@@ -5,7 +5,7 @@ import UserInputs from "./UserInputs";
 import ContinueButton from "./ContinueButton";
 import { useState } from "react";
 
-const StepOne = ({ id, formData, setFormData }) => {
+const StepOne = ({ id, formData, setFormData, setStep }) => {
   const lettersOnlyRegex = /^[a-zA-Z]+$/;
 
   const [errorChanges, setErrorChanges] = useState();
@@ -35,6 +35,12 @@ const StepOne = ({ id, formData, setFormData }) => {
       newError.userName = "Хэрэглэгчийн нэрээ оруулна уу.";
     }
     setErrorChanges(newError);
+
+    const ifNoError = Object.keys(newError);
+
+    if (ifNoError.length === 0) {
+      setStep((prevStep) => prevStep + 1);
+    }
   };
 
   return (

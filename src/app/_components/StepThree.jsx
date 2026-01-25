@@ -6,7 +6,7 @@ import BackButton from "./BackButton";
 import { useState } from "react";
 import Label from "./DragImg";
 
-const StepThree = ({ id, formData, setFormData }) => {
+const StepThree = ({ id, formData, setFormData, handlePrev, setStep }) => {
   const [errorChanges, setErrorChanges] = useState();
 
   const onChange = (event) => {
@@ -15,12 +15,18 @@ const StepThree = ({ id, formData, setFormData }) => {
 
   const formValidation = () => {
     const newError = {};
-
+    console.log("This is user info", formData);
     if (!formData.birthday) {
       newError.birthday = "Төрсөн өдрөө оруулна уу";
       newError.image = "Профайл зурагаа оруулна уу";
     }
     setErrorChanges(newError);
+
+    const ifNoError = Object.keys(newError);
+
+    if (ifNoError.length === 0) {
+      setStep((prevStep) => prevStep + 1);
+    }
   };
 
   return (
@@ -41,7 +47,7 @@ const StepThree = ({ id, formData, setFormData }) => {
         <Label label={"Profile image"} error={errorChanges?.image} />
       </div>
       <div className="flex w-full gap-2 mt-auto">
-        <BackButton text={"Back"} />
+        <BackButton text={"Back"} onClick={handlePrev} />
         <ContinueButton
           stepTwoThreeBtnFlex={"flex-1"}
           text="Continue"

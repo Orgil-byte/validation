@@ -18,17 +18,45 @@ const ValidationPage = () => {
     birthday: "",
     image: "",
   });
-  console.log("This is user info", formData);
+
+  const [step, setStep] = useState(1);
+
+  const handlePrev = () => {
+    setStep((prevStep) => prevStep - 1);
+  };
 
   return (
     <div className="bg-gray-100 w-full h-screen flex justify-center items-center">
-      <StepOne id={1} formData={formData} setFormData={setFormData} />
-      <StepTwo id={2} formData={formData} setFormData={setFormData} />
-      <StepThree id={3} formData={formData} setFormData={setFormData} />
-      <DefaultLogo
-        textLogo={"You're All Set"}
-        textResponse={"We've received your submission. Thank you!"}
-      />
+      {step === 1 ? (
+        <StepOne
+          id={1}
+          formData={formData}
+          setFormData={setFormData}
+          handlePrev={handlePrev}
+          setStep={setStep}
+        />
+      ) : step === 2 ? (
+        <StepTwo
+          id={2}
+          formData={formData}
+          setFormData={setFormData}
+          setStep={setStep}
+          handlePrev={handlePrev}
+        />
+      ) : step === 3 ? (
+        <StepThree
+          id={3}
+          formData={formData}
+          setFormData={setFormData}
+          handlePrev={handlePrev}
+          setStep={setStep}
+        />
+      ) : step === 4 ? (
+        <DefaultLogo
+          textLogo={"You're All Set"}
+          textResponse={"We've received your submission. Thank you!"}
+        />
+      ) : null}
     </div>
   );
 };
