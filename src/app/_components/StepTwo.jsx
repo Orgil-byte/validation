@@ -87,7 +87,7 @@ const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
           value={formData.password}
           label={"Password"}
           name={"password"}
-          type={"text"}
+          type={"password"}
           placeholder={"Your password"}
           onChange={onChange}
           error={errorChanges?.password}
@@ -96,7 +96,7 @@ const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
           value={formData.confirmPassword}
           label={"ConfirmPassword"}
           name={"confirmPassword"}
-          type={"text"}
+          type={"password"}
           placeholder={"Confirm password"}
           onChange={onChange}
           error={errorChanges?.confirmPassword}

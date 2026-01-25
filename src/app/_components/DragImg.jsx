@@ -1,4 +1,4 @@
-const Label = ({ label, error }) => {
+const Label = ({ label, error, type }) => {
   return (
     <div className="space-y-2">
       <p className=" block text-sm font-semibold leading-4 text-[#334155]">
@@ -13,7 +13,9 @@ const Label = ({ label, error }) => {
           />
         </div>
         <h4 className="text-sm text-center">Browse or Drop Image</h4>
+        <input type={type} />
       </div>
+
       <p className="text-error text-xs text-red-500">{error}</p>
     </div>
   );

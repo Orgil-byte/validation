@@ -49,6 +49,7 @@ const StepThree = ({ id, formData, setFormData, handlePrev, setStep }) => {
           value={formData.image}
           label={"Profile image"}
           error={errorChanges?.image}
+          type={"file"}
         />
       </div>
       <div className="flex w-full gap-2 mt-auto">

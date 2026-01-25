@@ -3,7 +3,7 @@ const ContinueButton = ({ text, pageNum, onClick, stepTwoThreeBtnFlex }) => {
     <button
       onClick={onClick}
       type="submit"
-      className={`flex ${stepTwoThreeBtnFlex} h-11 items-center justify-center mt-auto  gap-2 rounded-md bg-[#121316] text-white transition-all duration-300 hover:opacity-80`}
+      className={`flex ${stepTwoThreeBtnFlex} cursor-pointer h-11 items-center justify-center mt-auto  gap-2 rounded-md bg-[#121316] text-white transition-all duration-300 hover:opacity-80`}
     >
       {text} {pageNum}
       <img
