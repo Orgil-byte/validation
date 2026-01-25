@@ -66,6 +66,7 @@ const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
       />
       <div className="flex flex-col grow gap-3 mb-5">
         <UserInputs
+          value={formData.email}
           label={"Email"}
           name={"email"}
           type={"text"}
@@ -74,6 +75,7 @@ const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
           error={errorChanges?.email}
         />
         <UserInputs
+          value={formData.phoneNumber}
           label={"Phone number"}
           name={"phoneNumber"}
           type={"text"}
@@ -82,6 +84,7 @@ const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
           error={errorChanges?.phoneNumber}
         />
         <UserInputs
+          value={formData.password}
           label={"Password"}
           name={"password"}
           type={"text"}
@@ -90,6 +93,7 @@ const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
           error={errorChanges?.password}
         />
         <UserInputs
+          value={formData.confirmPassword}
           label={"ConfirmPassword"}
           name={"confirmPassword"}
           type={"text"}

@@ -37,6 +37,7 @@ const StepThree = ({ id, formData, setFormData, handlePrev, setStep }) => {
       />
       <div className="flex flex-col grow gap-3 mb-5">
         <UserInputs
+          value={formData.birthday}
           label={"Date of birth"}
           name={"birthday"}
           type={"date"}
@@ -44,7 +45,11 @@ const StepThree = ({ id, formData, setFormData, handlePrev, setStep }) => {
           onChange={onChange}
           error={errorChanges?.birthday}
         />
-        <Label label={"Profile image"} error={errorChanges?.image} />
+        <Label
+          value={formData.image}
+          label={"Profile image"}
+          error={errorChanges?.image}
+        />
       </div>
       <div className="flex w-full gap-2 mt-auto">
         <BackButton text={"Back"} onClick={handlePrev} />

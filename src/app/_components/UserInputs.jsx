@@ -1,4 +1,12 @@
-const UserInputs = ({ label, type, placeholder, name, onChange, error }) => {
+const UserInputs = ({
+  label,
+  type,
+  placeholder,
+  name,
+  onChange,
+  error,
+  value,
+}) => {
   const baseClasses =
     "w-full p-3 text-base leading-5 rounded-md focus:outline-[#0ca5e9] text-[#121316]";
   const errorClasses = error ? " outline-red-500" : "outline-[#cbd5e1]";
@@ -9,6 +17,7 @@ const UserInputs = ({ label, type, placeholder, name, onChange, error }) => {
         {label} <span className="text-[#e14942] text-[16px]">*</span>
       </p>
       <input
+        value={value}
         onChange={onChange}
         type={type}
         placeholder={placeholder}

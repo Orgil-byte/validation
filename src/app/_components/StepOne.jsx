@@ -51,6 +51,7 @@ const StepOne = ({ id, formData, setFormData, setStep }) => {
       />
       <div className="flex flex-col grow gap-3">
         <UserInputs
+          value={formData.firstName}
           label={"First name"}
           name={"firstName"}
           type={"text"}
@@ -59,6 +60,7 @@ const StepOne = ({ id, formData, setFormData, setStep }) => {
           error={errorChanges?.firstName}
         />
         <UserInputs
+          value={formData.lastName}
           label={"Last name"}
           name={"lastName"}
           type={"text"}
@@ -67,6 +69,7 @@ const StepOne = ({ id, formData, setFormData, setStep }) => {
           error={errorChanges?.lastName}
         />
         <UserInputs
+          value={formData.userName}
           label={"Username"}
           name={"userName"}
           type={"text"}
