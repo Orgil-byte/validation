@@ -65,6 +65,8 @@ const StepThree = ({ id, formData, setFormData, handlePrev, setStep }) => {
           error={errorChanges?.birthday}
         />
         <Label
+          setFormData={setFormData}
+          formData={formData}
           value={formData.image}
           label={"Profile image"}
           error={errorChanges?.image}
