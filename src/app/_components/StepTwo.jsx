@@ -36,12 +36,16 @@ const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
 
     if (!formData.password.trim()) {
       newError.password = "Нууц үгээ оруулна уу.";
-    } else if (!passwordRegex.test(formData.password)) {
-      newError.password = "Password should at least has 6 characters.";
-    } else if (!passwordNum.test(formData.password)) {
-      newError.password = "Password should include numbers.";
-    } else if (!passwordLetter.test(formData.password)) {
-      newError.password = "Password should include letters.";
+    } else {
+      if (!passwordRegex.test(formData.password)) {
+        newError.password = "Password should at least has 6 characters.";
+      }
+      if (!passwordNum.test(formData.password)) {
+        newError.password = "Password should include numbers.";
+      }
+      if (!passwordLetter.test(formData.password)) {
+        newError.password = "Password should include letters.";
+      }
     }
 
     if (!formData.confirmPassword.trim()) {

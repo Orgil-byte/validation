@@ -25,14 +25,19 @@ const StepThree = ({ id, formData, setFormData, handlePrev, setStep }) => {
 
     if (!formData.birthday) {
       newError.birthday = "Төрсөн өдрөө оруулна уу";
-    } else if (dateObject > currentDate) {
-      newError.birthday = "Төрсөн өдөр одоогийн огнооноос өмнө байх ёстой.";
-    } else if (ageYear < 18) {
-      newError.birthday = "Та 18 ба түүнээс дээш настай байх ёстой.";
-    } else if (ageYear === 18 && ageMonth < 0) {
-      newError.birthday = "Та 18 ба түүнээс дээш настай байх ёстой.";
-    } else if (ageYear === 18 && ageMonth === 0 && ageDay < 0) {
-      newError.birthday = "Та 18 ба түүнээс дээш настай байх ёстой.";
+    } else {
+      if (dateObject > currentDate) {
+        newError.birthday = "Төрсөн өдөр одоогийн огнооноос өмнө байх ёстой.";
+      }
+      if (ageYear < 18) {
+        newError.birthday = "Та 18 ба түүнээс дээш настай байх ёстой.";
+      }
+      if (ageYear === 18 && ageMonth < 0) {
+        newError.birthday = "Та 18 ба түүнээс дээш настай байх ёстой.";
+      }
+      if (ageYear === 18 && ageMonth === 0 && ageDay < 0) {
+        newError.birthday = "Та 18 ба түүнээс дээш настай байх ёстой.";
+      }
     }
 
     if (!formData.image) {
