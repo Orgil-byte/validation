@@ -3,7 +3,7 @@ import { useState } from "react";
 const Label = ({ label, error, type, formData }) => {
   const [imgUrl, setImgUrl] = useState(null);
   const [imgPreview, setImgPreview] = useState(null);
-  const [zIndex, setZIndex] = useState({
+  const [zIndexClass, setZIndexClass] = useState({
     index: "z-[-2]",
     class: "",
     x: "",
@@ -30,17 +30,17 @@ const Label = ({ label, error, type, formData }) => {
       newImgClass.class = "";
       newImgClass.x = "";
     }
-    setZIndex(newImgClass);
+    setZIndexClass(newImgClass);
   };
 
   const removeImage = () => {
-    setImgPreview(null);
+    formData.image = "";
     setImgUrl(null);
     setImgPreview(null);
     newImgClass.index = "z-[-2]";
     newImgClass.class = "";
     newImgClass.x = "";
-    setZIndex(newImgClass);
+    setZIndexClass(newImgClass);
   };
 
   return (
@@ -48,9 +48,9 @@ const Label = ({ label, error, type, formData }) => {
       <p className=" block text-sm font-semibold leading-4 text-[#334155]">
         {label} <span className="text-[#e14942] text-[16px]">*</span>
       </p>
-      <div className="flex flex-col items-center justify-center gap-y-2 cursor-pointer bg-gray-100 h-45 border border-gray-300 rounded-md border-solid relative">
-        <div onClick={removeImage} className={zIndex.class}>
-          {zIndex.x}
+      <div className="flex flex-col items-center justify-center gap-y-2  bg-gray-100 h-45 border border-gray-300 rounded-md border-solid relative">
+        <div onClick={removeImage} className={zIndexClass.class}>
+          {zIndexClass.x}
         </div>
         <div className="bg-white rounded-full w-7 h-7 flex items-center justify-center">
           <img
@@ -66,7 +66,7 @@ const Label = ({ label, error, type, formData }) => {
           onChange={handleChange}
         />
         <img
-          className={`h-full w-full object-cover absolute ${zIndex.index}`}
+          className={`h-full w-full object-cover absolute ${zIndexClass.index}`}
           src={imgPreview}
           alt=""
         />
