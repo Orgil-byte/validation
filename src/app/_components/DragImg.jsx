@@ -8,10 +8,13 @@ const Label = ({ label, error, type, formData }) => {
     class: "",
     x: "",
   });
+  console.log("imgUrl:", imgUrl);
 
   const newImgClass = {};
 
   const handleChange = (e) => {
+    console.log(e.target);
+
     const file = e.target.files[0];
 
     if (file && file.type.startsWith("image/")) {
@@ -26,9 +29,9 @@ const Label = ({ label, error, type, formData }) => {
     } else {
       setImgUrl(null);
       setImgPreview(null);
-      newImgClass.index = "z-[-2]";
-      newImgClass.class = "";
-      newImgClass.x = "";
+      // newImgClass.index = "z-[-2]";
+      // newImgClass.class = "";
+      // newImgClass.x = "";
     }
     setZIndexClass(newImgClass);
   };
@@ -37,11 +40,13 @@ const Label = ({ label, error, type, formData }) => {
     formData.image = "";
     setImgUrl(null);
     setImgPreview(null);
-    newImgClass.index = "z-[-2]";
-    newImgClass.class = "";
-    newImgClass.x = "";
-    setZIndexClass(newImgClass);
+    // newImgClass.index = "z-[-2]";
+    // newImgClass.class = "";
+    // newImgClass.x = "";
+    // setZIndexClass(newImgClass);
   };
+
+  console.log(zIndexClass);
 
   return (
     <div className="space-y-2">
@@ -49,7 +54,7 @@ const Label = ({ label, error, type, formData }) => {
         {label} <span className="text-[#e14942] text-[16px]">*</span>
       </p>
       <div className="flex flex-col items-center justify-center gap-y-2  bg-gray-100 h-45 border border-gray-300 rounded-md border-solid relative">
-        <div onClick={removeImage} className={zIndexClass.class}>
+        <div onClick={removeImage} type="button" className={zIndexClass.class}>
           {zIndexClass.x}
         </div>
         <div className="bg-white rounded-full w-7 h-7 flex items-center justify-center">
@@ -60,16 +65,20 @@ const Label = ({ label, error, type, formData }) => {
           />
         </div>
         <h4 className="text-sm text-center">Browse or Drop Image</h4>
-        <input
-          type={type}
-          className="w-full h-full opacity-0  cursor-pointer absolute"
-          onChange={handleChange}
-        />
-        <img
-          className={`h-full w-full object-cover absolute ${zIndexClass.index}`}
-          src={imgPreview}
-          alt=""
-        />
+        {!imgPreview && (
+          <input
+            type={type}
+            className="w-full h-full opacity-0  cursor-pointer absolute"
+            onChange={handleChange}
+          />
+        )}
+        {imgPreview && (
+          <img
+            className={`h-full w-full object-cover absolute ${zIndexClass.index}`}
+            src={imgPreview}
+            alt=""
+          />
+        )}
       </div>
       <p className="text-error text-xs text-red-500">{error}</p>
     </div>
