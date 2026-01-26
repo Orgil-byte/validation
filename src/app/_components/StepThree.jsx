@@ -14,12 +14,31 @@ const StepThree = ({ id, formData, setFormData, handlePrev, setStep }) => {
   };
 
   const formValidation = () => {
+    const dateObject = new Date(formData.birthday);
+    const currentDate = new Date();
+    let ageYear = currentDate.getFullYear() - dateObject.getFullYear();
+    let ageMonth = currentDate.getMonth() - dateObject.getMonth();
+    let ageDay = currentDate.getDay() - dateObject.getDay();
+
     const newError = {};
     console.log("This is user info", formData);
+
     if (!formData.birthday) {
       newError.birthday = "Төрсөн өдрөө оруулна уу";
+    } else if (dateObject > currentDate) {
+      newError.birthday = "Төрсөн өдөр одоогийн огнооноос өмнө байх ёстой.";
+    } else if (ageYear < 18) {
+      newError.birthday = "Та 18 ба түүнээс дээш настай байх ёстой.";
+    } else if (ageYear === 18 && ageMonth < 0) {
+      newError.birthday = "Та 18 ба түүнээс дээш настай байх ёстой.";
+    } else if (ageYear === 18 && ageMonth === 0 && ageDay < 0) {
+      newError.birthday = "Та 18 ба түүнээс дээш настай байх ёстой.";
+    }
+
+    if (!formData.image) {
       newError.image = "Профайл зурагаа оруулна уу";
     }
+
     setErrorChanges(newError);
 
     const ifNoError = Object.keys(newError);
