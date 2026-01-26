@@ -8,13 +8,10 @@ const Label = ({ label, error, type, formData }) => {
     class: "",
     x: "",
   });
-  console.log("imgUrl:", imgUrl);
 
   const newImgClass = {};
 
   const handleChange = (e) => {
-    console.log(e.target);
-
     const file = e.target.files[0];
 
     if (file && file.type.startsWith("image/")) {
@@ -29,9 +26,9 @@ const Label = ({ label, error, type, formData }) => {
     } else {
       setImgUrl(null);
       setImgPreview(null);
-      // newImgClass.index = "z-[-2]";
-      // newImgClass.class = "";
-      // newImgClass.x = "";
+      newImgClass.index = "z-[-2]";
+      newImgClass.class = "";
+      newImgClass.x = "";
     }
     setZIndexClass(newImgClass);
   };
@@ -40,13 +37,11 @@ const Label = ({ label, error, type, formData }) => {
     formData.image = "";
     setImgUrl(null);
     setImgPreview(null);
-    // newImgClass.index = "z-[-2]";
-    // newImgClass.class = "";
-    // newImgClass.x = "";
-    // setZIndexClass(newImgClass);
+    newImgClass.index = "z-[-2]";
+    newImgClass.class = "";
+    newImgClass.x = "";
+    setZIndexClass(newImgClass);
   };
-
-  console.log(zIndexClass);
 
   return (
     <div className="space-y-2">
