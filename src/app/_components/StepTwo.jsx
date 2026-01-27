@@ -14,14 +14,16 @@ import {
 } from "../_utils/validation";
 import { useState } from "react";
 
-const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
+const StepTwo = ({
+  id,
+  formData,
+  handlePrev,
+  setStep,
+  onChange,
+  errorChanges,
+  setErrorChanges,
+}) => {
   const { email, phoneNumber, password, confirmPassword } = formData;
-
-  const [errorChanges, setErrorChanges] = useState();
-
-  const onChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
 
   const formValidation = () => {
     const newError = {};

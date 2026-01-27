@@ -7,14 +7,17 @@ import { useState } from "react";
 import Label from "./DragImg";
 import { isEmpty, isEmptyImage } from "../_utils/validation";
 
-const StepThree = ({ id, formData, setFormData, handlePrev, setStep }) => {
+const StepThree = ({
+  id,
+  formData,
+  setFormData,
+  handlePrev,
+  setStep,
+  onChange,
+  errorChanges,
+  setErrorChanges,
+}) => {
   const { birthday, image } = formData;
-
-  const [errorChanges, setErrorChanges] = useState();
-
-  const onChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
 
   const formValidation = () => {
     const dateObject = new Date(formData.birthday);

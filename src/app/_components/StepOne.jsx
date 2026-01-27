@@ -6,14 +6,15 @@ import ContinueButton from "./ContinueButton";
 import { useState } from "react";
 import { isEmpty, isLetter } from "../_utils/validation";
 
-const StepOne = ({ id, formData, setFormData, setStep }) => {
+const StepOne = ({
+  id,
+  formData,
+  setStep,
+  onChange,
+  errorChanges,
+  setErrorChanges,
+}) => {
   const { firstName, lastName, userName } = formData;
-
-  const [errorChanges, setErrorChanges] = useState();
-
-  const onChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
 
   const formValidation = () => {
     const newError = {};

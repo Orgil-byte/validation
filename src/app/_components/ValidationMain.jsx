@@ -16,6 +16,9 @@ const ValidationPage = () => {
     setStep,
     handlePrev,
     framerMotionAnimate,
+    onChange,
+    errorChanges,
+    setErrorChanges,
   } = Logics();
 
   return (
@@ -36,6 +39,9 @@ const ValidationPage = () => {
               setFormData={setFormData}
               handlePrev={handlePrev}
               setStep={setStep}
+              onChange={onChange}
+              errorChanges={errorChanges}
+              setErrorChanges={setErrorChanges}
             />
           </motion.div>
         ) : step === 2 ? (
@@ -53,6 +59,9 @@ const ValidationPage = () => {
               setFormData={setFormData}
               setStep={setStep}
               handlePrev={handlePrev}
+              onChange={onChange}
+              errorChanges={errorChanges}
+              setErrorChanges={setErrorChanges}
             />
           </motion.div>
         ) : step === 3 ? (
@@ -70,6 +79,9 @@ const ValidationPage = () => {
               setFormData={setFormData}
               handlePrev={handlePrev}
               setStep={setStep}
+              onChange={onChange}
+              errorChanges={errorChanges}
+              setErrorChanges={setErrorChanges}
             />
           </motion.div>
         ) : step === 4 ? (

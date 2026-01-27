@@ -8,6 +8,12 @@ const Logics = () => {
     exit: { x: "-100%", opacity: 0 },
   };
 
+  const onChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const [errorChanges, setErrorChanges] = useState();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -33,6 +39,9 @@ const Logics = () => {
     setStep,
     handlePrev,
     framerMotionAnimate,
+    onChange,
+    errorChanges,
+    setErrorChanges,
   };
 };
 
