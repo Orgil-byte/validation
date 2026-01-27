@@ -5,8 +5,11 @@ import ContinueButton from "./ContinueButton";
 import BackButton from "./BackButton";
 import { useState } from "react";
 import Label from "./DragImg";
+import { isEmpty, isEmptyImage } from "../_utils/validation";
 
 const StepThree = ({ id, formData, setFormData, handlePrev, setStep }) => {
+  const { birthday, image } = formData;
+
   const [errorChanges, setErrorChanges] = useState();
 
   const onChange = (event) => {
@@ -23,7 +26,7 @@ const StepThree = ({ id, formData, setFormData, handlePrev, setStep }) => {
     const newError = {};
     console.log("This is user info", formData);
 
-    if (!formData.birthday) {
+    if (isEmpty(birthday)) {
       newError.birthday = "Төрсөн өдрөө оруулна уу";
     } else {
       if (dateObject > currentDate) {
@@ -40,7 +43,7 @@ const StepThree = ({ id, formData, setFormData, handlePrev, setStep }) => {
       }
     }
 
-    if (!formData.image) {
+    if (isEmptyImage(image)) {
       newError.image = "Профайл зурагаа оруулна уу";
     }
 

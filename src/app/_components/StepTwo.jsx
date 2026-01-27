@@ -4,14 +4,18 @@ import DefaultLogo from "./DefaultLogo";
 import UserInputs from "./UserInputs";
 import ContinueButton from "./ContinueButton";
 import BackButton from "./BackButton";
+import {
+  isEmpty,
+  isEmail,
+  isPhone,
+  isPasswordSix,
+  isPasswordHasLetter,
+  isPasswordHasNum,
+} from "../_utils/validation";
 import { useState } from "react";
 
 const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneNumberRegex = /^\+?\d{8}$/;
-  const passwordRegex = /[A-Za-z\d]{6,}/;
-  const passwordNum = /(?=.*\d)/;
-  const passwordLetter = /[a-zA-Z]/;
+  const { email, phoneNumber, password, confirmPassword } = formData;
 
   const [errorChanges, setErrorChanges] = useState();
 
@@ -22,35 +26,35 @@ const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
   const formValidation = () => {
     const newError = {};
 
-    if (!formData.email.trim()) {
+    if (isEmpty(email)) {
       newError.email = "Мэйл хаягаа оруулна уу";
-    } else if (!emailRegex.test(formData.email)) {
+    } else if (isEmail(email)) {
       newError.email = "Please provide a valid email adress.";
     }
 
-    if (!formData.phoneNumber.trim()) {
+    if (isEmpty(phoneNumber)) {
       newError.phoneNumber = "Утасны дугаараа оруулна уу.";
-    } else if (!phoneNumberRegex.test(formData.phoneNumber)) {
+    } else if (isPhone(phoneNumber)) {
       newError.phoneNumber = "Please enter a valid phone number.";
     }
 
-    if (!formData.password.trim()) {
+    if (isEmpty(password)) {
       newError.password = "Нууц үгээ оруулна уу.";
     } else {
-      if (!passwordRegex.test(formData.password)) {
+      if (isPasswordSix(password)) {
         newError.password = "Password should at least has 6 characters.";
       }
-      if (!passwordNum.test(formData.password)) {
+      if (isPasswordHasNum(password)) {
         newError.password = "Password should include numbers.";
       }
-      if (!passwordLetter.test(formData.password)) {
+      if (isPasswordHasLetter(password)) {
         newError.password = "Password should include letters.";
       }
     }
 
-    if (!formData.confirmPassword.trim()) {
+    if (isEmpty(confirmPassword)) {
       newError.confirmPassword = "Нууц үгээ давтаж оруулна уу.";
-    } else if (formData.password !== formData.confirmPassword) {
+    } else if (password !== confirmPassword) {
       newError.confirmPassword = "Таны оруулсан нууц үг таарахгүй байна.";
     }
     setErrorChanges(newError);
@@ -70,7 +74,7 @@ const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
       />
       <div className="flex flex-col grow gap-3 mb-5">
         <UserInputs
-          value={formData.email}
+          value={email}
           label={"Email"}
           name={"email"}
           type={"text"}
@@ -79,7 +83,7 @@ const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
           error={errorChanges?.email}
         />
         <UserInputs
-          value={formData.phoneNumber}
+          value={phoneNumber}
           label={"Phone number"}
           name={"phoneNumber"}
           type={"text"}
@@ -88,7 +92,7 @@ const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
           error={errorChanges?.phoneNumber}
         />
         <UserInputs
-          value={formData.password}
+          value={password}
           label={"Password"}
           name={"password"}
           type={"password"}
@@ -97,7 +101,7 @@ const StepTwo = ({ id, formData, setFormData, handlePrev, setStep }) => {
           error={errorChanges?.password}
         />
         <UserInputs
-          value={formData.confirmPassword}
+          value={confirmPassword}
           label={"ConfirmPassword"}
           name={"confirmPassword"}
           type={"password"}

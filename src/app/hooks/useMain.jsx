@@ -20,7 +20,7 @@ const Logics = () => {
     image: "",
   });
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(3);
 
   const handlePrev = () => {
     setStep((prevStep) => prevStep - 1);

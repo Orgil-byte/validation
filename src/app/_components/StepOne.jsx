@@ -4,9 +4,10 @@ import DefaultLogo from "./DefaultLogo";
 import UserInputs from "./UserInputs";
 import ContinueButton from "./ContinueButton";
 import { useState } from "react";
+import { isEmpty, isLetter } from "../_utils/validation";
 
 const StepOne = ({ id, formData, setFormData, setStep }) => {
-  const lettersOnlyRegex = /^[a-zA-Z]+$/;
+  const { firstName, lastName, userName } = formData;
 
   const [errorChanges, setErrorChanges] = useState();
 
@@ -17,21 +18,21 @@ const StepOne = ({ id, formData, setFormData, setStep }) => {
   const formValidation = () => {
     const newError = {};
 
-    if (!formData.firstName.trim()) {
+    if (isEmpty(firstName)) {
       newError.firstName = "Нэрээ оруулна уу.";
-    } else if (!lettersOnlyRegex.test(formData.firstName)) {
+    } else if (isLetter(firstName)) {
       newError.firstName =
         "First name cannot contain special characters or numbers.";
     }
 
-    if (!formData.lastName.trim()) {
+    if (isEmpty(lastName)) {
       newError.lastName = "Овгоо оруулна уу.";
-    } else if (!lettersOnlyRegex.test(formData.lastName)) {
+    } else if (isLetter(lastName)) {
       newError.lastName =
         "Last name cannot contain special characters or numbers.";
     }
 
-    if (!formData.userName.trim()) {
+    if (isEmpty(userName)) {
       newError.userName = "Хэрэглэгчийн нэрээ оруулна уу.";
     }
     setErrorChanges(newError);
@@ -51,7 +52,7 @@ const StepOne = ({ id, formData, setFormData, setStep }) => {
       />
       <div className="flex flex-col grow gap-3">
         <UserInputs
-          value={formData.firstName}
+          value={firstName}
           label={"First name"}
           name={"firstName"}
           type={"text"}
@@ -60,7 +61,7 @@ const StepOne = ({ id, formData, setFormData, setStep }) => {
           error={errorChanges?.firstName}
         />
         <UserInputs
-          value={formData.lastName}
+          value={lastName}
           label={"Last name"}
           name={"lastName"}
           type={"text"}
@@ -69,7 +70,7 @@ const StepOne = ({ id, formData, setFormData, setStep }) => {
           error={errorChanges?.lastName}
         />
         <UserInputs
-          value={formData.userName}
+          value={userName}
           label={"Username"}
           name={"userName"}
           type={"text"}
