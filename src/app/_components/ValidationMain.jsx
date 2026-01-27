@@ -1,36 +1,22 @@
 "use client";
-import { useState } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
+import Logics from "../hooks/useMain";
 
 import DefaultLogo from "./DefaultLogo";
 import StepOne from "./StepOne";
 import StepThree from "./StepThree";
 import StepTwo from "./StepTwo";
 
-const framerMotionAnimate = {
-  intial: { x: "100%", opacity: 0 },
-  animate: { x: 0, opacity: 1 },
-  exit: { x: "-100%", opacity: 0 },
-};
-
 const ValidationPage = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    userName: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
-    confirmPassword: "",
-    birthday: "",
-    image: "",
-  });
-
-  const [step, setStep] = useState(1);
-
-  const handlePrev = () => {
-    setStep((prevStep) => prevStep - 1);
-  };
+  const {
+    formData,
+    setFormData,
+    step,
+    setStep,
+    handlePrev,
+    framerMotionAnimate,
+  } = Logics();
 
   return (
     <div className="bg-gray-100 w-full h-screen flex justify-center items-center">
