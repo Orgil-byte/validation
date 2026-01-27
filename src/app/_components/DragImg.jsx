@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Label = ({ label, error, type, formData }) => {
+const Label = ({ label, error, type, formData, setFormData }) => {
   const [imgUrl, setImgUrl] = useState(null);
   const [imgPreview, setImgPreview] = useState(null);
   const [zIndexClass, setZIndexClass] = useState({
@@ -18,7 +18,7 @@ const Label = ({ label, error, type, formData }) => {
       setImgUrl(file);
       const url = URL.createObjectURL(file);
       setImgPreview(url);
-      formData.image = file;
+      setFormData((prev) => ({ ...prev, image: file }));
       newImgClass.index = "z-[2]";
       newImgClass.class =
         "absolute top-4 right-4 flex items-center justify-center w-6 h-6 bg-[#202124] rounded-full cursor-pointer z-[3] text-white";
@@ -34,7 +34,7 @@ const Label = ({ label, error, type, formData }) => {
   };
 
   const removeImage = () => {
-    formData.image = "";
+    setFormData((prev) => ({ ...prev, image: "" }));
     setImgUrl(null);
     setImgPreview(null);
     newImgClass.index = "z-[-2]";
