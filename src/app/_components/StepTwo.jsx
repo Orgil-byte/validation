@@ -4,14 +4,7 @@ import DefaultLogo from "./DefaultLogo";
 import UserInputs from "./UserInputs";
 import ContinueButton from "./ContinueButton";
 import BackButton from "./BackButton";
-import {
-  isEmpty,
-  isEmail,
-  isPhone,
-  isPasswordSix,
-  isPasswordHasLetter,
-  isPasswordHasNum,
-} from "../_utils/validation";
+import useEmailPassValid from "../hooks/useEmailPasswordValid";
 
 const StepTwo = ({
   id,
@@ -22,51 +15,15 @@ const StepTwo = ({
   errorChanges,
   setErrorChanges,
 }) => {
-  const { email, phoneNumber, password, confirmPassword } = formData;
+  const onSubmit = () => {
+    const { isValid, newError } = useEmailPassValid(formData);
 
-  const formValidation = () => {
-    const newError = {};
-
-    if (isEmpty(email)) {
-      newError.email = "Мэйл хаягаа оруулна уу";
-    } else if (isEmail(email)) {
-      newError.email = "Please provide a valid email adress.";
-    }
-
-    if (isEmpty(phoneNumber)) {
-      newError.phoneNumber = "Утасны дугаараа оруулна уу.";
-    } else if (isPhone(phoneNumber)) {
-      newError.phoneNumber = "Please enter a valid phone number.";
-    }
-
-    if (isEmpty(password)) {
-      newError.password = "Нууц үгээ оруулна уу.";
-    } else {
-      if (isPasswordSix(password)) {
-        newError.password = "Password should at least has 6 characters.";
-      }
-      if (isPasswordHasNum(password)) {
-        newError.password = "Password should include numbers.";
-      }
-      if (isPasswordHasLetter(password)) {
-        newError.password = "Password should include letters.";
-      }
-    }
-
-    if (isEmpty(confirmPassword)) {
-      newError.confirmPassword = "Нууц үгээ давтаж оруулна уу.";
-    } else if (password !== confirmPassword) {
-      newError.confirmPassword = "Таны оруулсан нууц үг таарахгүй байна.";
-    }
-    setErrorChanges(newError);
-
-    const ifNoError = Object.keys(newError);
-
-    if (ifNoError.length === 0) {
+    if (isValid) {
       setStep((prevStep) => prevStep + 1);
     }
-  };
 
+    setErrorChanges(newError);
+  };
   return (
     <div className="flex flex-col w-120 min-h-163.75 bg-white rounded-lg p-8">
       <DefaultLogo
@@ -75,7 +32,7 @@ const StepTwo = ({
       />
       <div className="flex flex-col grow gap-3 mb-5">
         <UserInputs
-          value={email}
+          value={formData.email}
           label={"Email"}
           name={"email"}
           type={"text"}
@@ -84,7 +41,7 @@ const StepTwo = ({
           error={errorChanges?.email}
         />
         <UserInputs
-          value={phoneNumber}
+          value={formData.phoneNumber}
           label={"Phone number"}
           name={"phoneNumber"}
           type={"text"}
@@ -93,7 +50,7 @@ const StepTwo = ({
           error={errorChanges?.phoneNumber}
         />
         <UserInputs
-          value={password}
+          value={formData.password}
           label={"Password"}
           name={"password"}
           type={"password"}
@@ -102,7 +59,7 @@ const StepTwo = ({
           error={errorChanges?.password}
         />
         <UserInputs
-          value={confirmPassword}
+          value={formData.confirmPassword}
           label={"ConfirmPassword"}
           name={"confirmPassword"}
           type={"password"}
@@ -117,7 +74,7 @@ const StepTwo = ({
           stepTwoThreeBtnFlex={"flex-1"}
           text="Continue"
           pageNum={`${id}/3`}
-          onClick={formValidation}
+          onClick={onSubmit}
         />
       </div>
     </div>

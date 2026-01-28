@@ -30,3 +30,5 @@ export const isPasswordHasLetter = (value) => {
   const passwordLetter = /[a-zA-Z]/;
   return !passwordLetter.test(value);
 };
+
+export const isEmptyObj = (object) => Object.keys(object).length === 0;

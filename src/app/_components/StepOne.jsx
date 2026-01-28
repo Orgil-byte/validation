@@ -3,7 +3,7 @@
 import DefaultLogo from "./DefaultLogo";
 import UserInputs from "./UserInputs";
 import ContinueButton from "./ContinueButton";
-import { isEmpty, isLetter } from "../_utils/validation";
+import useNameValid from "../hooks/useNameIsValid";
 
 const StepOne = ({
   id,
@@ -13,46 +13,25 @@ const StepOne = ({
   errorChanges,
   setErrorChanges,
 }) => {
-  const { firstName, lastName, userName } = formData;
+  const onSubmit = () => {
+    const { isValid, newError } = useNameValid(formData);
 
-  const formValidation = () => {
-    const newError = {};
-
-    if (isEmpty(firstName)) {
-      newError.firstName = "Нэрээ оруулна уу.";
-    } else if (isLetter(firstName)) {
-      newError.firstName =
-        "First name cannot contain special characters or numbers.";
-    }
-
-    if (isEmpty(lastName)) {
-      newError.lastName = "Овгоо оруулна уу.";
-    } else if (isLetter(lastName)) {
-      newError.lastName =
-        "Last name cannot contain special characters or numbers.";
-    }
-
-    if (isEmpty(userName)) {
-      newError.userName = "Хэрэглэгчийн нэрээ оруулна уу.";
-    }
-    setErrorChanges(newError);
-
-    const ifNoError = Object.keys(newError);
-
-    if (ifNoError.length === 0) {
+    if (isValid) {
       setStep((prevStep) => prevStep + 1);
     }
+
+    setErrorChanges(newError);
   };
 
   return (
     <div className="flex flex-col w-120 h-163.75 bg-white rounded-lg p-8">
       <DefaultLogo
-        textLogo={"Join Us! 😎"}
-        textResponse={"Please provide all current information accurately."}
+        textLogo="Join Us! 😎"
+        textResponse="Please provide all current information accurately."
       />
       <div className="flex flex-col grow gap-3">
         <UserInputs
-          value={firstName}
+          value={formData.firstName}
           label={"First name"}
           name={"firstName"}
           type={"text"}
@@ -61,7 +40,7 @@ const StepOne = ({
           error={errorChanges?.firstName}
         />
         <UserInputs
-          value={lastName}
+          value={formData.lastName}
           label={"Last name"}
           name={"lastName"}
           type={"text"}
@@ -70,7 +49,7 @@ const StepOne = ({
           error={errorChanges?.lastName}
         />
         <UserInputs
-          value={userName}
+          value={formData.userName}
           label={"Username"}
           name={"userName"}
           type={"text"}
@@ -79,11 +58,7 @@ const StepOne = ({
           error={errorChanges?.userName}
         />
       </div>
-      <ContinueButton
-        text="Continue"
-        pageNum={`${id}/3`}
-        onClick={formValidation}
-      />
+      <ContinueButton text="Continue" pageNum={`${id}/3`} onClick={onSubmit} />
     </div>
   );
 };

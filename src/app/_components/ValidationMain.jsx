@@ -1,14 +1,14 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import Logics from "../hooks/useMain";
+import useFormManagement from "../hooks/useMain";
 
 import DefaultLogo from "./DefaultLogo";
 import StepOne from "./StepOne";
 import StepThree from "./StepThree";
 import StepTwo from "./StepTwo";
 
-const ValidationPage = () => {
+const FormValidation = () => {
   const {
     formData,
     setFormData,
@@ -19,7 +19,7 @@ const ValidationPage = () => {
     onChange,
     errorChanges,
     setErrorChanges,
-  } = Logics();
+  } = useFormManagement();
 
   return (
     <div className="bg-gray-100 w-full h-screen flex justify-center items-center">
@@ -105,4 +105,4 @@ const ValidationPage = () => {
   );
 };
 
-export default ValidationPage;
+export default FormValidation;

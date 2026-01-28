@@ -1,13 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const Logics = () => {
-  const framerMotionAnimate = {
-    intial: { x: "100%", opacity: 0 },
-    animate: { x: 0, opacity: 1 },
-    exit: { x: "-100%", opacity: 0 },
-  };
-
+const useFormManagement = () => {
   const onChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -31,18 +25,22 @@ const Logics = () => {
   const handlePrev = () => {
     setStep((prevStep) => prevStep - 1);
   };
-
+  const framerMotionAnimate = {
+    intial: { x: "100%", opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    exit: { x: "-100%", opacity: 0 },
+  };
   return {
     formData,
     setFormData,
     step,
     setStep,
     handlePrev,
-    framerMotionAnimate,
     onChange,
     errorChanges,
     setErrorChanges,
+    framerMotionAnimate,
   };
 };
 
-export default Logics;
+export default useFormManagement;
