@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import useFormManagement from "../hooks/useMain";
+import useFormManagement from "./useFormManagement";
 
 import DefaultLogo from "./DefaultLogo";
 import StepOne from "./StepOne";
