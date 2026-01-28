@@ -12,7 +12,6 @@ import {
   isPasswordHasLetter,
   isPasswordHasNum,
 } from "../_utils/validation";
-import { useState } from "react";
 
 const StepTwo = ({
   id,
