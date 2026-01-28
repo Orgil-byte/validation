@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Label = ({ label, error, type, formData, setFormData }) => {
+const Label = ({ label, error, type, setFormData }) => {
   const [imgUrl, setImgUrl] = useState(null);
   const [imgPreview, setImgPreview] = useState(null);
   const [zIndexClass, setZIndexClass] = useState({
