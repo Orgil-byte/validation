@@ -1,13 +1,12 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
 import useFormManagement from "../hooks/useMain";
 
 import SuccessText from "./SuccessText";
 import StepOne from "./StepOne";
 import StepThree from "./StepThree";
 import StepTwo from "./StepTwo";
-
+import FormWrapper from "./FormWrapper";
 const steps = [StepOne, StepTwo, StepThree, SuccessText];
 
 const FormValidation = () => {
@@ -26,7 +25,7 @@ const FormValidation = () => {
 
   return (
     <div>
-      <FormWrapper>
+      <FormWrapper step={step}>
         <Step
           id={step + 1}
           formData={formData}
@@ -43,29 +42,3 @@ const FormValidation = () => {
 };
 
 export default FormValidation;
-
-const FormWrapper = ({ children }) => {
-  const { step } = useFormManagement();
-
-  const framerMotionAnimate = {
-    intial: { x: "100%", opacity: 0 },
-    animate: { x: 0, opacity: 1 },
-    exit: { x: "-100%", opacity: 0 },
-  };
-  return (
-    <div className="bg-gray-100 w-full h-screen flex justify-center items-center">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={step}
-          variants={framerMotionAnimate}
-          intial="intial"
-          animate="animate"
-          exit="exit"
-          transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
-};
