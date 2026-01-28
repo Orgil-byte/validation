@@ -4,6 +4,7 @@ import { useState } from "react";
 const useFormManagement = () => {
   const onChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+    setErrorChanges({ ...errorChanges, [event.target.name]: "" });
   };
 
   const [errorChanges, setErrorChanges] = useState();
