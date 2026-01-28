@@ -3,10 +3,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import useFormManagement from "../hooks/useMain";
 
-import DefaultLogo from "./DefaultLogo";
+import SuccessText from "./SuccessText";
 import StepOne from "./StepOne";
 import StepThree from "./StepThree";
 import StepTwo from "./StepTwo";
+
+const steps = [StepOne, StepTwo, StepThree, SuccessText];
 
 const FormValidation = () => {
   const {
@@ -15,94 +17,55 @@ const FormValidation = () => {
     step,
     setStep,
     handlePrev,
-    framerMotionAnimate,
     onChange,
     errorChanges,
     setErrorChanges,
   } = useFormManagement();
 
+  const Step = steps[step];
+
   return (
-    <div className="bg-gray-100 w-full h-screen flex justify-center items-center">
-      <AnimatePresence mode="wait">
-        {step === 1 ? (
-          <motion.div
-            key={step}
-            variants={framerMotionAnimate}
-            intial="intial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
-          >
-            <StepOne
-              id={1}
-              formData={formData}
-              setFormData={setFormData}
-              handlePrev={handlePrev}
-              setStep={setStep}
-              onChange={onChange}
-              errorChanges={errorChanges}
-              setErrorChanges={setErrorChanges}
-            />
-          </motion.div>
-        ) : step === 2 ? (
-          <motion.div
-            key={step}
-            variants={framerMotionAnimate}
-            intial="intial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
-          >
-            <StepTwo
-              id={2}
-              formData={formData}
-              setFormData={setFormData}
-              setStep={setStep}
-              handlePrev={handlePrev}
-              onChange={onChange}
-              errorChanges={errorChanges}
-              setErrorChanges={setErrorChanges}
-            />
-          </motion.div>
-        ) : step === 3 ? (
-          <motion.div
-            key={step}
-            variants={framerMotionAnimate}
-            intial="intial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
-          >
-            <StepThree
-              id={3}
-              formData={formData}
-              setFormData={setFormData}
-              handlePrev={handlePrev}
-              setStep={setStep}
-              onChange={onChange}
-              errorChanges={errorChanges}
-              setErrorChanges={setErrorChanges}
-            />
-          </motion.div>
-        ) : step === 4 ? (
-          <motion.div
-            key={step}
-            variants={framerMotionAnimate}
-            intial="intial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
-          >
-            <DefaultLogo
-              padding={"p-8 w-120 rounded-lg"}
-              textLogo={"You're All Set 🔥"}
-              textResponse={"We've received your submission. Thank you!"}
-            />
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+    <div>
+      <FormWrapper>
+        <Step
+          id={step + 1}
+          formData={formData}
+          setFormData={setFormData}
+          handlePrev={handlePrev}
+          setStep={setStep}
+          onChange={onChange}
+          errorChanges={errorChanges}
+          setErrorChanges={setErrorChanges}
+        />
+      </FormWrapper>
     </div>
   );
 };
 
 export default FormValidation;
+
+const FormWrapper = ({ children }) => {
+  const { step } = useFormManagement();
+
+  const framerMotionAnimate = {
+    intial: { x: "100%", opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    exit: { x: "-100%", opacity: 0 },
+  };
+  return (
+    <div className="bg-gray-100 w-full h-screen flex justify-center items-center">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={step}
+          variants={framerMotionAnimate}
+          intial="intial"
+          animate="animate"
+          exit="exit"
+          transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
