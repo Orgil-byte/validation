@@ -3,7 +3,6 @@ import DefaultLogo from "./DefaultLogo";
 import UserInputs from "./UserInputs";
 import ContinueButton from "./ContinueButton";
 import BackButton from "./BackButton";
-import { useState } from "react";
 import Label from "./DragImg";
 import { isEmpty, isEmptyImage } from "../_utils/validation";
 

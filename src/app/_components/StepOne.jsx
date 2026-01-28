@@ -3,7 +3,6 @@
 import DefaultLogo from "./DefaultLogo";
 import UserInputs from "./UserInputs";
 import ContinueButton from "./ContinueButton";
-import { useState } from "react";
 import { isEmpty, isLetter } from "../_utils/validation";
 
 const StepOne = ({
