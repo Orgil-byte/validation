@@ -21,7 +21,7 @@ const useFormManagement = () => {
     image: "",
   });
 
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
 
   const handlePrev = () => {
     setStep((prevStep) => prevStep - 1);
