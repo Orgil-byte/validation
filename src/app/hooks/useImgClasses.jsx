@@ -15,7 +15,7 @@ const useImgClasses = () => {
       newImgClass.class =
         "absolute top-4 right-4 flex items-center justify-center w-6 h-6 bg-[#202124] rounded-full cursor-pointer z-[3] text-white";
       newImgClass.x = "x";
-      newImgClass.icon = "z-[-999]";
+      newImgClass.icon = "hidden";
       newImgClass.text = "";
     } else {
       newImgClass.index = "z-[-2]";
