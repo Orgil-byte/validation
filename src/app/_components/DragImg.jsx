@@ -1,28 +1,11 @@
 import { useState, useRef } from "react";
+import useImgClasses from "../hooks/useImgClasses";
 
 const Label = ({ label, error, type, setFormData }) => {
-  const [imgPreview, setImgPreview] = useState(null);
-  const [classes, setClasses] = useState({
-    index: "z-[-2]",
-    class: "",
-    x: "",
-  });
-  const ref = useRef();
+  const { classes, isActive } = useImgClasses();
 
-  const isActive = (condition) => {
-    if (condition === true) {
-      newImgClass.index = "z-[2]";
-      newImgClass.class =
-        "absolute top-4 right-4 flex items-center justify-center w-6 h-6 bg-[#202124] rounded-full cursor-pointer z-[3] text-white";
-      newImgClass.x = "x";
-    } else {
-      newImgClass.index = "z-[-2]";
-      newImgClass.class = "";
-      newImgClass.x = "";
-    }
-    setClasses(newImgClass);
-  };
-  const newImgClass = {};
+  const [imgPreview, setImgPreview] = useState(null);
+  const ref = useRef();
 
   const handleChange = () => {
     const file = ref.current.files[0];
@@ -48,13 +31,9 @@ const Label = ({ label, error, type, setFormData }) => {
           {classes.x}
         </div>
         <div className="bg-white rounded-full w-7 h-7 flex items-center justify-center">
-          <img
-            className="w-3 h-3 object-cover"
-            src="/add-image-icon.svg"
-            alt="img"
-          />
+          <img className={classes.icon} src="/add-image-icon.svg" alt="" />
         </div>
-        <h4 className="text-sm text-center">Browse or Drop Image</h4>
+        <h4 className="text-sm text-center">{classes.text}</h4>
         {!imgPreview && (
           <input
             accept="image/*"
