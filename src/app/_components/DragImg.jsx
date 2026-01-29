@@ -30,8 +30,12 @@ const Label = ({ label, error, type, setFormData }) => {
         <div onClick={removeImage} type="button" className={classes.class}>
           {classes.x}
         </div>
-        <div className="bg-white rounded-full w-7 h-7 flex items-center justify-center">
-          <img className={classes.icon} src="/add-image-icon.svg" alt="" />
+        <div className={classes.img}>
+          <img
+            className="w-3 h-3 object-cover"
+            src="/add-image-icon.svg"
+            alt=""
+          />
         </div>
         <h4 className="text-sm text-center">{classes.text}</h4>
         {!imgPreview && (

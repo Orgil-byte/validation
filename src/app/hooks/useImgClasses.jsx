@@ -15,14 +15,16 @@ const useImgClasses = () => {
       newImgClass.class =
         "absolute top-4 right-4 flex items-center justify-center w-6 h-6 bg-[#202124] rounded-full cursor-pointer z-[3] text-white";
       newImgClass.x = "x";
-      newImgClass.icon = "hidden";
+
+      newImgClass.img = "hidden";
       newImgClass.text = "";
     } else {
       newImgClass.index = "z-[-2]";
       newImgClass.class = "";
       newImgClass.x = "";
       newImgClass.text = "Browse or Drop Image";
-      newImgClass.icon = "w-3 h-3 object-cover";
+      newImgClass.img =
+        "bg-white rounded-full w-7 h-7 flex items-center justify-center";
     }
     setClasses(newImgClass);
   };
